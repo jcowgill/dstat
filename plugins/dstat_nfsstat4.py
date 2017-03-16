@@ -35,9 +35,7 @@ class dstat_plugin(dstat):
                 "remove", "rename", "link", "symlink", "create", "pathconf", "statfs", "readlink",
                 "readdir", "server_caps", "delegreturn", "getacl", "setacl", "fs_locations",
                 "rel_lkowner", "secinfo")
-        for line in self.splitlines():
-
-            fields = line.split()
+        for fields in self.splitlines():
             if fields[0] == "proc4": # just grab NFSv4 stats
                 assert int(fields[1]) == len(fields[2:]), ("reported field count (%d) does not match actual field count (%d)" % (int(fields[1]), len(fields[2:])))
                 for var in self.vars:

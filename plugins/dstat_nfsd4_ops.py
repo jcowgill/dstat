@@ -57,9 +57,7 @@ class dstat_plugin(dstat):
                 'set_ssv', 'test_stateid', 'want_deleg', 'destroy_clid', 'reclaim_comp'
                 )
 
-        for line in self.splitlines():
-            fields = line.split()
-
+        for fields in self.splitlines():
             if fields[0] == "proc4ops": # just grab NFSv4 stats
                 assert int(fields[1]) == len(fields[2:]), ("reported field count (%d) does not match actual field count (%d)" % (int(fields[1]), len(fields[2:])))
                 for var in self.vars:
